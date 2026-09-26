@@ -16,7 +16,7 @@ const About = () => {
 When I’m not coding, I’m exploring new UI trends or just vibing with good music and design inspo. Let's build something beautiful.
        </div>
        <div className='resume-button'>
-       <a href="/Amaugo Faith Resume.pdf" target="_blank" rel="noopener noreferrer">
+      <a href="/Faith-Amaugo-Resume.pdf" target="_blank" rel="noopener noreferrer">
        <button>
           My Resume
           

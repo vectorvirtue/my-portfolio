@@ -34,21 +34,21 @@ function Header() {
         />
       </div>
       <div className="social-icons">
-        <a href="https://www.linkedin.com/in/amaugo-faith-b7b7412ab" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/amaugo-faith-b7b7412ab" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
           <FaLinkedin className="icon linkedin" />
         </a>
-        <a href="https://github.com/vectorvirtue" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/vectorvirtue" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
           <FaGithub className="icon github" />
         </a>
         <div className="location-container">
           <FaMapMarkerAlt className="icon location" />
           <span className="tooltip">Lagos, Nigeria</span>
         </div>
-        <a href="tel:+2347070485626"> 
+         <a href="tel:+2347070485626" aria-label="Call Faith"> 
          <FaPhone className="icon phone" />
          </a>  
     
-         <a href="mailto:amaugofaith@gmail.com">
+         <a href="mailto:amaugofaith@gmail.com" aria-label="Email Faith">
          <FaEnvelope className="icon envelope" />
          </a>
         </div>
