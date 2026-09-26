@@ -36,6 +36,8 @@ function App() {
         <meta property="og:title" content="Faith Amaugo | Frontend Developer" />
         <meta property="og:description" content="Portfolio of Faith Amaugo, a frontend developer building responsive web experiences." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://amaugo-faith.vercel.app/" />
+        <link rel="canonical" href="https://amaugo-faith.vercel.app/" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Faith Amaugo | Frontend Developer" />
         <meta name="twitter:description" content="Portfolio of Faith Amaugo, a frontend developer building responsive web experiences." />
