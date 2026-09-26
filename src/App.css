@@ -52,6 +52,56 @@ body::before {
   align-items: center;
   text-align: center;
 }
+
+.site-header {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, calc(100% - 2rem));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand,
+.site-header nav a {
+  color: #fff7e6;
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+}
+
+.brand {
+  font-size: 1.05rem;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.site-header nav a:hover,
+.site-header nav a:focus-visible,
+.brand:hover,
+.brand:focus-visible {
+  color: #b9a7c7;
+}
+
+.hero h1 {
+  margin-top: 0.75rem;
+  color: #fff7e6;
+  font-size: clamp(1.65rem, 4.5vw, 2.7rem);
+  font-family: cursive;
+}
+
+.hero-summary {
+  max-width: 34rem;
+  margin-top: 0.75rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
 .intro img {
   height: 16rem;
   width: 16rem;
@@ -83,29 +133,35 @@ h4 {
 }
 
 .icon {
-  font-size: 1.8rem;
+  font-size: 1.65rem;
   transition: color 0.3s;
   cursor: pointer;
-  color: #fff7e6;
+  color: rgba(255, 247, 230, 0.72);
 }
 
 /* Individual hover colors */
 .linkedin:hover {
-  color: #0077b5;
+  color: #75a9c5;
 }
 
 .github:hover {
-  color: #6e5494;
+  color: #b3a6c7;
 }
 .phone:hover, .envelope:hover{
-  color: #f1c86b;
+  color: #b9a7c7;
 }
 
 .location:hover {
-  color: #f1c86b;
+  color: #b9a7c7;
 }
 .location-container {
   position: relative;
+}
+
+.location-trigger {
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .tooltip {
@@ -132,14 +188,17 @@ h4 {
   opacity: 1;
 }
 
+.location-trigger:focus-visible + .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 .about-section{
   width: 100%;
  color: white;
  font-family: cursive;
 }
 section{
-  background-image: url(dots-bg.aa8289c51cd678b8cd47.svg);
-  background-size: 4rem;
     min-height: 4rem;
     width: calc(100% - 2rem);
     margin-left: 1rem;
@@ -148,10 +207,31 @@ section{
   background-repeat: no-repeat;
 }
 .left-text{
-  font-size: 2.3rem;
+  position: relative;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  min-height: 5rem;
+  font-size: 2.5rem;
   margin-left: 1rem;
   max-width: 100%;
   overflow-wrap: anywhere;
+}
+.section-marker {
+  position: absolute;
+  top: 50%;
+  left: -0.75rem;
+  z-index: -1;
+  color: #a891b5;
+  font-size: 4.5rem;
+  opacity: 0.18;
+  transform: translateY(-50%);
+}
+.left-text span {
+  position: relative;
+  font-weight: 400;
+  margin-left: 0.5rem;
+  z-index: 1;
 }
 .box {
   max-width: 700px;
@@ -188,6 +268,17 @@ section{
   padding: 1rem;
   font-family: cursive;
   font-weight: 600;
+}
+
+.resume-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.2rem;
+  border-radius: 0.5rem;
+  background-color: #503862;
+  color: #fff7e6;
+  font-family: cursive;
 }
 a{
   text-decoration: none;
@@ -256,25 +347,32 @@ a{
 }
 
 .project-content .project-tech {
-  color: #f1c86b;
+  color: #b9a7c7;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.live-projects-section {
-  margin-top: 6rem;
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #b9a7c7;
+  outline-offset: 4px;
 }
 
-.live-projects-section section {
-  margin-top: 0;
+.live-projects-section {
+  margin-top: 6rem;
+  padding-top: 0.1rem;
+}
+
+.live-projects-section .section-title {
+  margin-bottom: 2rem;
 }
 
 .live-project-link {
   display: block;
   padding: 1rem 1.25rem;
-  border: 1px solid rgba(241, 200, 107, 0.65);
+  border: 1px solid rgba(185, 167, 199, 0.65);
   border-radius: 0.5rem;
   color: #fff7e6;
   background: rgba(10, 10, 10, 0.62);
@@ -285,8 +383,83 @@ a{
 }
 
 .live-project-link:hover {
-  color: #111111;
-  background: #f1c86b;
+  color: #fff7e6;
+  background: #655070;
+}
+
+.contact-section {
+  width: min(900px, calc(100% - 2rem));
+  min-height: auto;
+  margin: 8rem auto 0;
+  padding: 4rem 1.5rem;
+  background: rgba(10, 10, 10, 0.5);
+  border: 1px solid rgba(185, 167, 199, 0.28);
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.contact-content {
+  max-width: 38rem;
+  margin: 0 auto;
+}
+
+.contact-kicker {
+  color: #a891b5;
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-section h2 {
+  margin-top: 0.75rem;
+  color: #fff7e6;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.contact-section p:not(.contact-kicker) {
+  margin-top: 0.9rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+}
+
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.75rem;
+}
+
+.contact-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+}
+
+.contact-primary {
+  background: #655070;
+  color: #fff7e6;
+}
+
+.contact-secondary {
+  border: 1px solid rgba(185, 167, 199, 0.5);
+  color: #d6c8df;
+}
+
+.contact-primary:hover,
+.contact-primary:focus-visible {
+  background: #7e658d;
+}
+
+.contact-secondary:hover,
+.contact-secondary:focus-visible {
+  border-color: #b9a7c7;
+  color: #fff7e6;
 }
 
 /* Responsive breakpoints */
@@ -297,6 +470,18 @@ a{
 }
 
 @media (max-width: 600px) {
+  .site-header {
+    align-items: flex-start;
+  }
+
+  .site-header nav {
+    gap: 0.75rem;
+  }
+
+  .site-header nav a {
+    font-size: 0.8rem;
+  }
+
   .hero {
     margin-top: 4rem;
   }
@@ -314,7 +499,19 @@ a{
 
   .left-text {
     margin-left: 1rem;
-    font-size: 1.9rem;
+    min-height: 4.5rem;
+    font-size: 2rem;
     line-height: 1.2;
+  }
+
+  .section-marker {
+    left: -0.5rem;
+    font-size: 3.75rem;
+    opacity: 0.16;
+  }
+
+  .contact-section {
+    margin-top: 5rem;
+    padding: 3rem 1rem;
   }
 }

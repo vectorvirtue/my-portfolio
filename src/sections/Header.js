@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import heroImage from "../assets/20250404_131230.jpg";
 import Typewriter from "typewriter-effect";
 import { FaLinkedin, FaGithub, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
@@ -6,14 +7,27 @@ import "../App.css";
 
 function Header() {
   return (
-    
+    <>
+      <header className="site-header">
+        
+        <nav aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="/Faith-Amaugo-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+        </nav>
+      </header>
 
-    <div className="hero">
-     
+    <motion.div
+      className="hero"
+      id="top"
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+    >
       <div className="intro">
-        <img src={heroImage} alt="Hero"  />
+        <img src={heroImage} alt="Faith Amaugo" />
       </div>
-      <h4>  Amarachi</h4>
+      <h1>Faith Amaugo</h1>
 
       <div className="typewriter-text">
         <Typewriter
@@ -41,7 +55,9 @@ function Header() {
           <FaGithub className="icon github" />
         </a>
         <div className="location-container">
-          <FaMapMarkerAlt className="icon location" />
+          <button className="location-trigger" type="button" aria-label="Location: Lagos, Nigeria">
+            <FaMapMarkerAlt className="icon location" />
+          </button>
           <span className="tooltip">Lagos, Nigeria</span>
         </div>
          <a href="tel:+2347070485626" aria-label="Call Faith"> 
@@ -52,7 +68,8 @@ function Header() {
          <FaEnvelope className="icon envelope" />
          </a>
         </div>
-    </div>
+    </motion.div>
+    </>
 
   );
 }
