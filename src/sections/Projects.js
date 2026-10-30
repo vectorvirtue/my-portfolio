@@ -70,6 +70,7 @@ const projects = [
 const liveProjects = [
   {
     title: 'Promall Shop',
+    description: 'An online shop for browsing products and shopping electronics.',
     liveUrl: 'https://www.promallshop.com',
     tech: ['React', 'Vite', 'CSS', 'TypeScript (TSX)'],
     image: promallShopPreview,
@@ -77,6 +78,7 @@ const liveProjects = [
   },
   {
     title: 'Proxynet Group',
+    description: 'Connectivity, infrastructure, and managed technology services for businesses across Africa.',
     liveUrl: 'https://www.proxynetgroup.com',
     tech: ['React', 'Vite', 'CSS', 'JavaScript (JSX)'],
     image: proxynetPreview,
@@ -84,6 +86,7 @@ const liveProjects = [
   },
   {
     title: 'The Technites',
+    description: 'Software solutions that help African businesses and industries innovate and grow.',
     liveUrl: 'https://thetechnites.com',
     tech: ['React', 'Vite', 'CSS', 'JavaScript (JSX)'],
     image: technitesPreview,
@@ -91,6 +94,7 @@ const liveProjects = [
   },
   {
     title: 'Barakah Suite',
+    description: 'A business management platform for accounting, payroll, inventory, and everyday operations.',
     liveUrl: 'https://www.barakahsuite.com',
     tech: ['React', 'Vite', 'CSS', 'JavaScript (JSX)'],
     image: barakahPreview,
@@ -150,21 +154,26 @@ const Projects = () => {
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                {project.image ? (
-                  <img className="live-project-preview" src={project.image} alt={project.alt} />
-                ) : (
-                  <div
-                    className="project-preview-placeholder"
-                    role="img"
-                    aria-label={`Screenshot coming soon for ${project.title}`}
-                  >
-                    <span className="project-preview-icon" aria-hidden="true">▧</span>
-                    <span>Screenshot coming soon</span>
-                  </div>
-                )}
+                <div className="live-project-preview-container">
+                  {project.image ? (
+                    <img className="live-project-preview" src={project.image} alt={project.alt} />
+                  ) : (
+                    <div
+                      className="project-preview-placeholder"
+                      role="img"
+                      aria-label={`Screenshot coming soon for ${project.title}`}
+                    >
+                      <span className="project-preview-icon" aria-hidden="true">▧</span>
+                      <span>Screenshot coming soon</span>
+                    </div>
+                  )}
+                  {project.image && project.description && (
+                    <p className="live-project-description">{project.description}</p>
+                  )}
+                </div>
                 <div className="project-content">
                   <h3>{project.title}</h3>
-                  {project.description && <p>{project.description}</p>}
+                  {!project.image && project.description && <p>{project.description}</p>}
                   <ul className="project-tech-list" aria-label={`${project.title} technology stack`}>
                     {project.tech.map((technology) => (
                       <li key={technology}>{technology}</li>

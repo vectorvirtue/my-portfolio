@@ -378,6 +378,40 @@ button:focus-visible {
   flex: 1;
 }
 
+.live-project-preview-container {
+  position: relative;
+}
+
+.live-project-description {
+  margin: 0;
+  padding: 1rem;
+  border-top: 1px solid rgba(185, 167, 199, 0.45);
+  color: #fff7e6;
+  background: rgba(10, 10, 10, 0.92);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .live-project-description {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-top-color: rgba(185, 167, 199, 0.65);
+    background: linear-gradient(transparent, rgba(10, 10, 10, 0.96) 28%);
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .live-project-card:hover .live-project-description,
+  .live-project-card:focus-within .live-project-description {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .project-preview-placeholder {
   aspect-ratio: 16 / 10;
   display: flex;
