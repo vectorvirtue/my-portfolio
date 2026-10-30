@@ -4,5 +4,14 @@ import App from './App';
 test('renders the portfolio sections', () => {
   render(<App />);
   expect(screen.getByText(/about me/i)).toBeInTheDocument();
-  expect(screen.getByText(/selected projects/i)).toBeInTheDocument();
+  expect(screen.getByText(/early experiments/i)).toBeInTheDocument();
+  expect(screen.getByText('Stadium Admin Dashboard')).toBeInTheDocument();
+  expect(screen.getByText('Not live yet')).toBeInTheDocument();
+  expect(screen.getByText('TypeScript (TSX)')).toBeInTheDocument();
+  expect(screen.getAllByText('JavaScript (JSX)')).toHaveLength(4);
+  expect(screen.queryByText('Screenshot coming soon')).not.toBeInTheDocument();
+  expect(screen.getByAltText(/stadium admin dashboard showing ticket sales/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/promall shop ecommerce homepage/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/proxynet communications homepage/i)).toBeInTheDocument();
+  expect(screen.getAllByRole('link', { name: 'Visit live site' })).toHaveLength(4);
 });

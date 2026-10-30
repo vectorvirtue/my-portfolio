@@ -8,6 +8,11 @@ import firebase from '../assets/Screenshot_20-6-2025_185551_firebase-login-topaz
 import movieapp from '../assets/Screenshot_20-6-2025_18578_.jpeg';
 import series1 from '../assets/Screenshot_20-6-2025_185753_.jpeg';
 import series2 from '../assets/Screenshot_20-6-2025_185838_.jpeg';
+import stadiumDashboard from '../assets/stadium-admin-dashboard.png';
+import technitesPreview from '../assets/technites-preview.png';
+import barakahPreview from '../assets/barakah-suite-preview.png';
+import proxynetPreview from '../assets/proxynet-preview.png';
+import promallShopPreview from '../assets/promall-shop-preview.png';
 import '../App.css';
 
 const projects = [
@@ -63,10 +68,42 @@ const projects = [
 ];
 
 const liveProjects = [
-  { title: 'Promall Shop', liveUrl: 'https://staging.promallshop.com' },
-  { title: 'Proxynet Group', liveUrl: 'https://proxynetgroup.com' },
-  { title: 'The Technites', liveUrl: 'https://www.thetechnites.com' },
-  { title: 'Barakah Suite', liveUrl: 'https://barakahsuite.com' },
+  {
+    title: 'Promall Shop',
+    liveUrl: 'https://www.promallshop.com',
+    tech: ['React', 'Vite', 'CSS', 'TypeScript (TSX)'],
+    image: promallShopPreview,
+    alt: 'Promall Shop ecommerce homepage',
+  },
+  {
+    title: 'Proxynet Group',
+    liveUrl: 'https://www.proxynetgroup.com',
+    tech: ['React', 'Vite', 'CSS', 'JavaScript (JSX)'],
+    image: proxynetPreview,
+    alt: 'Proxynet Communications homepage',
+  },
+  {
+    title: 'The Technites',
+    liveUrl: 'https://thetechnites.com',
+    tech: ['React', 'Vite', 'CSS', 'JavaScript (JSX)'],
+    image: technitesPreview,
+    alt: 'The Technites software solutions homepage',
+  },
+  {
+    title: 'Barakah Suite',
+    liveUrl: 'https://www.barakahsuite.com',
+    tech: ['React', 'Vite', 'CSS', 'JavaScript (JSX)'],
+    image: barakahPreview,
+    alt: 'Barakah Suite business and financial management homepage',
+  },
+  {
+    title: 'Stadium Admin Dashboard',
+    description: 'A recently built dashboard for managing stadium events, ticket sales, and attendance.',
+    tech: ['React', 'Vite', 'CSS', 'JavaScript (JSX)'],
+    image: stadiumDashboard,
+    alt: 'Stadium admin dashboard showing ticket sales, revenue, and attendance metrics',
+    status: 'Not live yet',
+  },
 ];
 
 const Projects = () => {
@@ -103,17 +140,50 @@ const Projects = () => {
             <TbGridDots className="section-marker" aria-hidden="true" />
             <span>Live projects</span>
           </h2>
-          <div className="projects-grid">
+          <div className="projects-grid live-projects-grid">
             {liveProjects.map((project) => (
-              <a
-                className="live-project-link"
-                href={project.liveUrl}
+              <motion.article
+                className="project-card live-project-card"
                 key={`${project.title}-live`}
-                target="_blank"
-                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                View {project.title}
-              </a>
+                {project.image ? (
+                  <img className="live-project-preview" src={project.image} alt={project.alt} />
+                ) : (
+                  <div
+                    className="project-preview-placeholder"
+                    role="img"
+                    aria-label={`Screenshot coming soon for ${project.title}`}
+                  >
+                    <span className="project-preview-icon" aria-hidden="true">▧</span>
+                    <span>Screenshot coming soon</span>
+                  </div>
+                )}
+                <div className="project-content">
+                  <h3>{project.title}</h3>
+                  {project.description && <p>{project.description}</p>}
+                  <ul className="project-tech-list" aria-label={`${project.title} technology stack`}>
+                    {project.tech.map((technology) => (
+                      <li key={technology}>{technology}</li>
+                    ))}
+                  </ul>
+                  {project.liveUrl ? (
+                    <a
+                      className="live-project-link"
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit live site
+                    </a>
+                  ) : (
+                    <span className="project-status">{project.status}</span>
+                  )}
+                </div>
+              </motion.article>
             ))}
           </div>
         </section>
