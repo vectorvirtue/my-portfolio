@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { TbGridDots } from 'react-icons/tb';
 import ecommerce1 from '../assets/Screenshot_20-6-2025_185247_127.0.0.1.jpeg';
@@ -111,6 +111,39 @@ const liveProjects = [
 ];
 
 const Projects = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const closeButtonRef = useRef(null);
+  const imageTriggerRef = useRef(null);
+
+  useEffect(() => {
+    if (!selectedImage) {
+      return undefined;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+      imageTriggerRef.current?.focus();
+    };
+  }, [selectedImage]);
+
+  const openImage = (event, image, alt, title) => {
+    imageTriggerRef.current = event.currentTarget;
+    setSelectedImage({ image, alt, title });
+  };
+
   return (
     <div className="about-section" id="projects">
       <section aria-labelledby="projects-heading">
@@ -129,7 +162,14 @@ const Projects = () => {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           >
-            <img src={project.image} alt={project.alt} />
+            <button
+              className="project-image-trigger"
+              type="button"
+              onClick={(event) => openImage(event, project.image, project.alt, project.title)}
+              aria-label={`View full-size image: ${project.title}`}
+            >
+              <img src={project.image} alt={project.alt} />
+            </button>
             <div className="project-content">
               <p className="project-tech">{project.tech}</p>
               <h3>{project.title}</h3>
@@ -156,7 +196,14 @@ const Projects = () => {
               >
                 <div className="live-project-preview-container">
                   {project.image ? (
-                    <img className="live-project-preview" src={project.image} alt={project.alt} />
+                    <button
+                      className="project-image-trigger"
+                      type="button"
+                      onClick={(event) => openImage(event, project.image, project.alt, project.title)}
+                      aria-label={`View full-size image: ${project.title}`}
+                    >
+                      <img className="live-project-preview" src={project.image} alt={project.alt} />
+                    </button>
                   ) : (
                     <div
                       className="project-preview-placeholder"
@@ -196,6 +243,29 @@ const Projects = () => {
             ))}
           </div>
         </section>
+      )}
+      {selectedImage && (
+        <div
+          className="image-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Full-size image: ${selectedImage.title}`}
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            className="image-lightbox-close"
+            type="button"
+            onClick={() => setSelectedImage(null)}
+            aria-label="Close full-size image"
+            ref={closeButtonRef}
+          >
+            &times;
+          </button>
+          <figure className="image-lightbox-content" onClick={(event) => event.stopPropagation()}>
+            <img src={selectedImage.image} alt={selectedImage.alt} />
+            <figcaption>{selectedImage.title}</figcaption>
+          </figure>
+        </div>
       )}
     </div>
   );
