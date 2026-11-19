@@ -13,6 +13,7 @@ import technitesPreview from '../assets/technites-preview.png';
 import barakahPreview from '../assets/barakah-suite-preview.png';
 import proxynetPreview from '../assets/proxynet-preview.png';
 import promallShopPreview from '../assets/promall-shop-preview.png';
+import wellnestClinicPreview from '../assets/image.png';
 import '../App.css';
 
 const projects = [
@@ -69,10 +70,18 @@ const projects = [
 
 const liveProjects = [
   {
+    title: 'Wellnest Clinic Dashboard',
+    description: 'A clinic booking dashboard for managing appointments, providers, patients, and slot availability.',
+    liveUrl: 'https://wellnest-clinic.onrender.com/dashboard',
+    tech: ['React', 'Framer Motion', 'Radix UI'],
+    image: wellnestClinicPreview,
+    alt: 'Wellnest clinic dashboard showing appointment and availability summaries',
+  },
+  {
     title: 'Promall Shop',
     description: 'An online shop for browsing products and shopping electronics.',
     liveUrl: 'https://www.promallshop.com',
-    tech: ['React', 'Vite', 'CSS', 'TypeScript (TSX)'],
+    tech: ['React', 'Vite', 'CSS', 'TypeScript (TSX)', 'Context API'],
     image: promallShopPreview,
     alt: 'Promall Shop ecommerce homepage',
   },
@@ -80,7 +89,7 @@ const liveProjects = [
     title: 'Proxynet Group',
     description: 'Connectivity, infrastructure, and managed technology services for businesses across Africa.',
     liveUrl: 'https://www.proxynetgroup.com',
-    tech: ['React', 'Vite', 'CSS', 'JavaScript (JSX)'],
+    tech: ['React', 'Vite', 'CSS', 'JavaScript (JSX)', 'Framer Motion'],
     image: proxynetPreview,
     alt: 'Proxynet Communications homepage',
   },

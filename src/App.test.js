@@ -9,6 +9,12 @@ test('renders the portfolio sections', () => {
   expect(screen.getByText('Not live yet')).toBeInTheDocument();
   expect(screen.getByText('TypeScript (TSX)')).toBeInTheDocument();
   expect(screen.getAllByText('JavaScript (JSX)')).toHaveLength(4);
+  expect(screen.getByText('Framer Motion')).toBeInTheDocument();
+  expect(screen.getByText('Radix UI')).toBeInTheDocument();
+  expect(screen.getByText('Context API')).toBeInTheDocument();
+  expect(screen.getByText('Wellnest Clinic Dashboard')).toBeInTheDocument();
+  expect(screen.getByAltText(/wellnest clinic dashboard showing appointment and availability summaries/i)).toBeInTheDocument();
+  expect(screen.getByText(/clinic booking dashboard for managing appointments/i)).toBeInTheDocument();
   expect(screen.getByText(/online shop for browsing products/i)).toBeInTheDocument();
   expect(screen.getByText(/connectivity, infrastructure, and managed technology services/i)).toBeInTheDocument();
   expect(screen.getByText(/software solutions that help african businesses/i)).toBeInTheDocument();
@@ -17,5 +23,5 @@ test('renders the portfolio sections', () => {
   expect(screen.getByAltText(/stadium admin dashboard showing ticket sales/i)).toBeInTheDocument();
   expect(screen.getByAltText(/promall shop ecommerce homepage/i)).toBeInTheDocument();
   expect(screen.getByAltText(/proxynet communications homepage/i)).toBeInTheDocument();
-  expect(screen.getAllByRole('link', { name: 'Visit live site' })).toHaveLength(4);
+  expect(screen.getAllByRole('link', { name: 'Visit live site' })).toHaveLength(5);
 });
